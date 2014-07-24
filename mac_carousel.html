@@ -1,0 +1,80 @@
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function()
+	{
+		$('.carousel').css('list-style-type', 'none');
+		var carousel = $('.carousel li');
+		for(var i = 0; i < carousel.length; i+=1)
+		{
+			var li = carousel.eq(i);
+			li.css('display', 'inline');
+			li.css('padding-right', '20px');
+		}
+		
+		function endToBegin()
+		{
+			var carousel = $('.carousel li');
+			var end = carousel.eq(carousel.length-1);
+			end.parent().prepend(end);
+		}
+		
+		function beginToEnd()
+		{
+			var carousel = $('.carousel li');
+			var begin = carousel.eq(0);
+			begin.parent().append(begin);
+		}
+		
+		endToBegin();
+		endToBegin();
+		endToBegin();
+		
+		for(var i = 0; i < carousel.length; i += 1)
+		{
+			carousel.eq(i).hide();
+		}
+		
+		var pause = false;
+		function updateCarousel()
+		{
+			if(!pause)
+			{
+				beginToEnd();
+			
+				var carousel = $('.carousel li');
+				carousel.eq(0).find('img').css('width', '25px');
+				carousel.eq(0).show();
+				carousel.eq(1).find('img').css('width', '50px');
+				carousel.eq(1).show();
+				carousel.eq(2).find('img').css('width', '100px');
+				carousel.eq(2).show();
+				carousel.eq(3).find('img').css('width', '50px');
+				carousel.eq(3).show();
+				carousel.eq(4).find('img').css('width', '25px');
+				carousel.eq(4).show();
+				
+				carousel.eq(carousel.length-1).hide();
+			
+			}
+			
+			setTimeout(updateCarousel, 1000);
+			
+		}
+		updateCarousel();
+		
+		$('.carousel').hover(function() { pause = true; }, function() { pause = false; });
+	});
+</script>
+<body>
+	<ul class="carousel">
+		<li><img src="http://bneinc.com/wp-content/uploads/2012/08/facebook-icon.png"></li>
+		<li><img src="http://www.ecpl.lib.oh.us/TwitterIcon_small1.png"></li>
+		<li><img src="http://christopherwink.com/wp-content/uploads/2007/12/linkedin-icon.gif"></li>
+		<li><img src="http://openexhibits.org/wp-content/uploads/icon/large/youtube-viewer-icon-100x100.png"></li>
+		<li><img src="http://4.bp.blogspot.com/-SAlsUK_Hwkw/TYGj8pt-kbI/AAAAAAAAAqE/blsfUwJWdbU/s100/Google%2BChrome%2Bicon%2Bnew.png"></li>
+		<li><img src="http://lalawag.com/wp-content/uploads/google_icon-100x100.png"></li>
+		<li><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSTPgfMzc8vQQiw1XpU1a2aWqvd4lCqUYhmYzjbz4eFPaxKY3bi" style="width: 100px;"></li>
+	</ul>
+</body>
+</html>
